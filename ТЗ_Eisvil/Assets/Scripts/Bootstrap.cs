@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
 {
-    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private GameObject[] _initializables;
     [SerializeField] private GameObject _playerGameObject;
 
     private void Awake()
     {
-        _playerController?.Initialize();
+        foreach (var item in _initializables)
+        {
+            IInitializable initializable = item.GetComponent<IInitializable>();
+            initializable?.Initialize();
+        }
         _playerGameObject.SetActive(true);
     }
 }
