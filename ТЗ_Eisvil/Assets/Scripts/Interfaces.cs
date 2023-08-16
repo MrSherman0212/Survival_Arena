@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public interface IInitializable
 {
     void Initialize();
@@ -5,6 +7,7 @@ public interface IInitializable
 
 public interface IMovable
 {
+    Vector2 MoveDirection { get; }
     void Move();
 }
 
@@ -16,4 +19,9 @@ public interface IDamagable
 public interface IShootable
 {
     void Shoot();
+}
+
+public interface IProjectileResistable
+{
+    float ProjectileResistance { get; }
 }

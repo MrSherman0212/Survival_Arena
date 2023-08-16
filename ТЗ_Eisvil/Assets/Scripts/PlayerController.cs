@@ -7,9 +7,13 @@ public class PlayerController : MonoBehaviour, IInitializable, IMovable
     private Vector2 _movementDirection;
     [SerializeField] private RectTransform _joystickTransform;
     private MeleeWeapon _meleeWeapon;
+    private HealthSystem _healthSystem;
 
     private Rigidbody2D _rigidbody2D;
     private PlayerInput _inputActions;
+    private ShootingWeapon _gun;
+
+    public Vector2 MoveDirection { get { return _movementDirection; } }
 
     public void Initialize()
     {
@@ -17,6 +21,10 @@ public class PlayerController : MonoBehaviour, IInitializable, IMovable
         _inputActions = new PlayerInput();
         _meleeWeapon = GetComponentInChildren<MeleeWeapon>();
         _meleeWeapon?.Initialize();
+        _healthSystem = GetComponent<HealthSystem>();
+        _healthSystem?.Initialize();
+        _gun = GetComponentInChildren<ShootingWeapon>();
+        _gun?.Initialize();
     }
 
     private void Update()
@@ -24,9 +32,20 @@ public class PlayerController : MonoBehaviour, IInitializable, IMovable
         Move();
     }
 
-    public void Move() => _rigidbody2D.velocity = _movementDirection * _movementSpeed;
+    public void Move()
+    {
+        _rigidbody2D.velocity = _movementDirection * _movementSpeed;
+    }
 
-    private void MoveInput(InputAction.CallbackContext context) => _movementDirection = context.ReadValue<Vector2>();
+    private void MoveInput(InputAction.CallbackContext context)
+    {
+        _movementDirection = context.ReadValue<Vector2>();
+        if (_movementDirection.x != 0 || _movementDirection.y != 0)
+        {
+            _gun.SetDirection(_movementDirection);
+        }
+    }
+
     private void TouchInput(InputAction.CallbackContext context) => _joystickTransform.position = context.ReadValue<Vector2>();
 
     private void OnEnable()
