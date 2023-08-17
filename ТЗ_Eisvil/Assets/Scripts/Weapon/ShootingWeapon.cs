@@ -22,9 +22,11 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
     public void Init()
     {
         _transform = GetComponent<Transform>();
-        _pool = new ObjectPool<Projectile>(CreateProjectile, PullProjectile, PushProjectile, DestroyProjectile, false, 10, 20);
+        _pool = new ObjectPool<Projectile>(CreateProjectile, PullProjectile, KillProjectile, DestroyProjectile, false, 10, 20);
         Spawn();
     }
+
+    public void SetPool(ObjectPool<Projectile> pool) => _pool = pool;
 
     private void Update()
     {
@@ -44,9 +46,7 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
     {
         for (int i = 0; i < _spawnAmount; i++)
         {
-            var bullet = Instantiate(_bulletPrefab);
-            InitializeProjectile(bullet);
-            bullet.DestroyProjectile();
+            CreateProjectile();
         }
     }
 
@@ -59,12 +59,14 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
         _shootCooldownTimer = 0;
         Projectile projectile = _usePool ? _pool.Get() : Instantiate(_bulletPrefab);
         InitializeProjectile(projectile);
-        DestroyProjectile(projectile);
+        projectile.SetPool(_pool);
     }
 
     private Projectile CreateProjectile()
     {
         Projectile projectile = Instantiate(_bulletPrefab);
+        InitializeProjectile(projectile);
+        KillProjectile(projectile);
         projectile.SetPool(_pool);
         return projectile;
     }
@@ -75,7 +77,7 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
         projectile.gameObject.SetActive(true);
     }
 
-    public virtual void PushProjectile(Projectile projectile)
+    public virtual void KillProjectile(Projectile projectile)
     {
         if (_usePool) projectile.gameObject.SetActive(false);
         else DestroyProjectile(projectile);
@@ -86,12 +88,6 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
     private void InitializeProjectile(Projectile projectile)
     {
         projectile.Init(this, _projectileDamage, _projectileSpeed, _projectileLifeTime, _projectilePenetrationPower);
-    }
-
-    public void KillBullet(Projectile projectile)
-    {
-        if (_usePool) _pool.Release(projectile);
-        else Destroy(projectile);
     }
 
     private void CountTimer() => _shootCooldownTimer += Time.deltaTime;

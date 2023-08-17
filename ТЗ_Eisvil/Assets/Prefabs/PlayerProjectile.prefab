@@ -134,9 +134,12 @@ MonoBehaviour:
   _damageAmount: 1
   _speed: 10
   _lifeTime: 2
-  _stoppingPower: 2
+  _penetrationPower: 2
   _contactExeptions:
   - Player
+  _blowEffect: {fileID: 4591556145393881682, guid: a74dd850afb2742708b64de8202211f4, type: 3}
+  _usePool: 1
+  _spawnAmount: 10
 --- !u!50 &7311518980467942699
 Rigidbody2D:
   serializedVersion: 4

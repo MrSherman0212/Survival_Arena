@@ -18,8 +18,8 @@ public class EssenceSpawner : MonoBehaviour, IInitializable
     public virtual void Init()
     {
         _transform = GetComponent<Transform>();
-        _pool = new ObjectPool<EssenceClass>(CreateEssence, PullEssence, PushEssence, DestroyEssence, false, 10, 20);
-        Spawn();
+        _pool = new ObjectPool<EssenceClass>(CreateEssence, PullEssence, KillEssence, DestroyEssence, false, 10, 20);
+        InvokeRepeating(nameof(Spawn), .2f, .2f);
     }
 
     protected virtual void Spawn()
@@ -38,22 +38,22 @@ public class EssenceSpawner : MonoBehaviour, IInitializable
         essence.transform.position = _transform.position;
     }
 
-    public EssenceClass CreateEssence()
+    public virtual EssenceClass CreateEssence()
     {
         EssenceClass essence = Instantiate(_essencePrefab);
         InitializeEssence(essence);
         essence.SetPool(_pool);
-        PushEssence(essence);
+        _pool.Release(essence);
         return essence;
     }
 
-    public void PullEssence(EssenceClass essence)
+    public virtual void PullEssence(EssenceClass essence)
     {
         essence.transform.position = _transform.position;
         essence.gameObject.SetActive(true);
     }
 
-    public void PushEssence(EssenceClass essence)
+    public void KillEssence(EssenceClass essence)
     {
         if (_usePool) essence.gameObject.SetActive(false);
         else DestroyEssence(essence);

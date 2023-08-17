@@ -18,7 +18,9 @@ public class EssenceClass : MonoBehaviour
     [SerializeField] protected float _collisionDamageAmount = 1;
     protected CollisionDamage _collisionDamage;
     protected Rigidbody2D _rigidbody2D;
+    protected Transform _transform;
 
+    public ObjectPool<EssenceClass> ObjectPool { get { return _pool; } }
     public Vector2 MoveDirection { set { _movementDirection = value; } }
 
     public virtual void Init(
@@ -32,6 +34,7 @@ public class EssenceClass : MonoBehaviour
         _healthSystem = GetComponent<HealthSystem>();
         _healthSystem.Init();
 
+        _transform = GetComponent<Transform>();
         _spawner = spawner;
         _maxHealthPoints = health;
         _movementSpeed = speed;
@@ -41,9 +44,14 @@ public class EssenceClass : MonoBehaviour
 
     private void Update() => Move();
 
-    protected virtual void Move() => _rigidbody2D.velocity = _movementDirection * _movementSpeed;
+    public virtual void Move()
+    {
+        _rigidbody2D.velocity = _movementDirection * _movementSpeed * Time.deltaTime;
+    }
 
-    public virtual void DestroyItem() => _spawner.PushEssence(this);
+    public virtual void SetDirection(Vector2 vector2) { }
+
+    public virtual void DestroyItem() => _pool.Release(this);
 
     public void SetPool(ObjectPool<EssenceClass> pool) => _pool = pool;
 }

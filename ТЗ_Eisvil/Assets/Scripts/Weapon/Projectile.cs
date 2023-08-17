@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
 
     [Header("ObjectPool")]
     [SerializeField] protected bool _usePool = true;
-    [SerializeField] protected int _spawnAmount = 100;
+    [SerializeField] protected int _spawnAmount = 10;
     protected ObjectPool<Projectile> _pool;
 
     private Transform _transform;
@@ -76,5 +76,5 @@ public class Projectile : MonoBehaviour
 
     public void SetPool(ObjectPool<Projectile> pool) => _pool = pool;
 
-    public void DestroyProjectile() => _gun.KillBullet(this);
+    public void DestroyProjectile() => _pool.Release(this);
 }

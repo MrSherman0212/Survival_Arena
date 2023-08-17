@@ -7,6 +7,7 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
     [SerializeField] private float _health;
     [SerializeField] private float _projectileResistance = 1;
     [SerializeField] private Slider _healthBar;
+    private EssenceClass _essence;
 
     public float MaxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
     public float ProjectileResistance { get { return _projectileResistance; } }
@@ -16,6 +17,7 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
         _health = _maxHealth;
         _healthBar.maxValue = _maxHealth;
         _healthBar.value = _health;
+        _essence = GetComponent<EssenceClass>();
     }
 
     public void Damage(float damage)
@@ -26,8 +28,5 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
             Die();
     }
 
-    private void Die()
-    {
-        
-    }
+    private void Die() => _essence.DestroyItem();
 }
