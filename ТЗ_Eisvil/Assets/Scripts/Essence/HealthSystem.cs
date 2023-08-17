@@ -8,9 +8,10 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
     [SerializeField] private float _projectileResistance = 1;
     [SerializeField] private Slider _healthBar;
 
+    public float MaxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
     public float ProjectileResistance { get { return _projectileResistance; } }
 
-    public void Initialize()
+    public void Init()
     {
         _health = _maxHealth;
         _healthBar.maxValue = _maxHealth;
@@ -25,5 +26,8 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
             Die();
     }
 
-    private void Die() => Destroy(gameObject);
+    private void Die()
+    {
+        
+    }
 }

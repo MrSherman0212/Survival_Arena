@@ -5,7 +5,7 @@ public class MeleeWeapon : MonoBehaviour, IInitializable
     [SerializeField] private float _rotationSpeed = 1;
     private Transform _transform;
 
-    public void Initialize()
+    public void Init()
     {
         _transform = GetComponent<Transform>();
     }

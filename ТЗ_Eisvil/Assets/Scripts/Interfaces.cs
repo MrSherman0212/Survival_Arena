@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IInitializable
 {
-    void Initialize();
+    void Init();
 }
 
 public interface IMovable
@@ -14,11 +14,6 @@ public interface IMovable
 public interface IDamagable
 {
     void Damage(float damage);
-}
-
-public interface IShootable
-{
-    void Shoot();
 }
 
 public interface IProjectileResistable
