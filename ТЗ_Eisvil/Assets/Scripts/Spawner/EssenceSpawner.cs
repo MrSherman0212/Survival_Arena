@@ -6,6 +6,7 @@ public class EssenceSpawner : MonoBehaviour, IInitializable
     [Header("ObjectPool")]
     [SerializeField] protected bool _usePool = true;
     [SerializeField] protected int _spawnAmount = 10;
+    [SerializeField] protected bool _canSpawn = true;
     protected ObjectPool<EssenceClass> _pool;
     protected Transform _transform;
     [Header("Essence params")]
@@ -24,7 +25,8 @@ public class EssenceSpawner : MonoBehaviour, IInitializable
 
     protected virtual void Spawn()
     {
-        for (int i = 0; i < _spawnAmount; i++) CreateEssence();
+        if (_canSpawn)
+            for (int i = 0; i < _spawnAmount; i++) CreateEssence();
     }
 
     protected void InitializeEssence(EssenceClass essence)

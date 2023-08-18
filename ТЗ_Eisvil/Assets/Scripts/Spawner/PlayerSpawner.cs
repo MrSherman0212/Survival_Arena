@@ -14,13 +14,15 @@ public class PlayerSpawner : EssenceSpawner
     public override void Init()
     {
         base.Init();
-        SpawnPlayers();
+        if (_canSpawn)
+            SpawnPlayers();
     }
 
     private void SpawnPlayers()
     {
         for (int i = 0; i < _spawnAmount; i++)
             _pool.Get();
+        _canSpawn = false;
     }
 
     public override EssenceClass CreateEssence()
