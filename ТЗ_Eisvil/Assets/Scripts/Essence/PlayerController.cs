@@ -28,14 +28,18 @@ public class PlayerController : EssenceClass
         _gun?.Init();
     }
 
-    public override void SetDirection(Vector2 vector2) => _movementDirection = _input.MovementDirection;
+    private void SetDirection() => _movementDirection = _input.MovementDirection;
+
+    private void Update()
+    {
+        Move();
+    }
 
     public override void Move()
     {
-        SetDirection(_movementDirection);
+        SetDirection();
         if (_input.MovementDirection.x != 0 || _input.MovementDirection.y != 0)
             _gun.SetDirection(_movementDirection);
         _rigidbody2D.velocity = _movementDirection * _movementSpeed;
-        Debug.Log(_movementDirection);
     }
 }

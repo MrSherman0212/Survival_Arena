@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoints: 5
   _projectileResistance: 5
-  _movementSpeed: 2
+  _movementSpeed: 20
   _collisionDamageAmount: 1
 --- !u!114 &425247215630004040
 MonoBehaviour:

@@ -21,7 +21,6 @@ public class EssenceClass : MonoBehaviour
     protected Transform _transform;
 
     public ObjectPool<EssenceClass> ObjectPool { get { return _pool; } }
-    public Vector2 MoveDirection { set { _movementDirection = value; } }
 
     public virtual void Init(
         EssenceSpawner spawner,
@@ -42,14 +41,10 @@ public class EssenceClass : MonoBehaviour
         _projectileResistance = projResistance;
     }
 
-    private void Update() => Move();
-
     public virtual void Move()
     {
-        _rigidbody2D.velocity = _movementDirection * _movementSpeed * Time.deltaTime;
+        _rigidbody2D.velocity = _movementDirection * Time.deltaTime;
     }
-
-    public virtual void SetDirection(Vector2 vector2) { }
 
     public virtual void DestroyItem() => _pool.Release(this);
 

@@ -28,11 +28,6 @@ public class PlayerSpawner : EssenceSpawner
         return essence;
     }
 
-    public override void PullEssence(EssenceClass essence)
-    {
-        base.PullEssence(essence);
-    }
-
     private void SetCameras(Transform player)
     {
         foreach (var item in _virtualCamera)

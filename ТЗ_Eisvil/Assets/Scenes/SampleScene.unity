@@ -954,7 +954,7 @@ MonoBehaviour:
   _spawnAmount: 100
   _essencePrefab: {fileID: 7889751151075400717, guid: 5bf01f2ad1b4f4051ab920c056ee089d, type: 3}
   _maxHealth: 5
-  _movementSpeed: 10
+  _movementSpeed: 3
   _collisionDamage: 2
   _projResistance: 2
   _spawnCooldown: 1
@@ -1188,10 +1188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _usePool: 1
-  _spawnAmount: 0
+  _spawnAmount: 2
   _essencePrefab: {fileID: 5981878951244207719, guid: d211c9dba1fbb4124a8360a83eff44cd, type: 3}
   _maxHealth: 5
-  _movementSpeed: 2
+  _movementSpeed: 20
   _collisionDamage: 2
   _projResistance: 2
   _essenceInput: {fileID: 810236057}

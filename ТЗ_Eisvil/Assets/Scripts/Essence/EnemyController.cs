@@ -6,14 +6,19 @@ public class EnemyController : EssenceClass
 
     public Transform PlayerTransform { set { _playerTransform = value; } }
 
-    public override void Move()
+    private void Update()
     {
-        SetDirection(_movementDirection);
-        base.Move();
+        Move();
     }
 
-    public override void SetDirection(Vector2 vector2)
+    public override void Move()
     {
-        vector2 = _playerTransform.position - _transform.position;
+        SetDirection();
+        _rigidbody2D.velocity = _movementDirection * _movementSpeed;
+    }
+
+    private void SetDirection()
+    {
+        _movementDirection = (_playerTransform.position - _transform.position).normalized;
     }
 }
