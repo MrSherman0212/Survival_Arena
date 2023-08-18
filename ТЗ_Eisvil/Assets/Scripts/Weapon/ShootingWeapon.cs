@@ -4,6 +4,9 @@ using UnityEngine.Pool;
 public class ShootingWeapon : MonoBehaviour, IInitializable
 {
     private Transform _transform;
+    [SerializeField] private Transform _gunTransform;
+    private SpriteRenderer _gunSprite;
+    private bool _canFlipGunSprite;
     [SerializeField] private TargetArea _targetArea;
     private Vector2 _moveDirection;
     [Header("Values")]
@@ -19,9 +22,12 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
     [SerializeField] private int _spawnAmount = 10;
     private ObjectPool<Projectile> _pool;
 
+    public Transform ProjPointTransform { get { return _gunTransform; } }
+
     public void Init()
     {
         _transform = GetComponent<Transform>();
+        _gunSprite = GetComponentInChildren<SpriteRenderer>();
         _pool = new ObjectPool<Projectile>(CreateProjectile, PullProjectile, KillProjectile, DestroyProjectile, false, 10, 20);
         Spawn();
     }
@@ -32,9 +38,14 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
     {
         CountTimer();
         if (_shootCooldownTimer >= _shootCooldown)
-        {
             Shoot();
-        }
+        FlipSprite();
+    }
+
+    private void FlipSprite()
+    {
+        _canFlipGunSprite = _gunTransform.position.x < _transform.position.x;
+        _gunSprite.flipY = _canFlipGunSprite;
     }
 
     public void SetDirection(Vector2 moveDirection)
@@ -73,7 +84,7 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
 
     private void PullProjectile(Projectile projectile)
     {
-        projectile.transform.position = _transform.position;
+        projectile.transform.position = _gunTransform.position;
         projectile.gameObject.SetActive(true);
     }
 

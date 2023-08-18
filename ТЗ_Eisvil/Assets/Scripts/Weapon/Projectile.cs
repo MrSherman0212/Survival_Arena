@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
         _penetrationPower = penetrationPower;
 
         _transform = GetComponent<Transform>();
-        _transform.position = _gun.transform.position;
+        _transform.position = _gun.ProjPointTransform.transform.position;
         _transform.rotation = _gun.transform.rotation;
     }
 
