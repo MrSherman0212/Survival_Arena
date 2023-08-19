@@ -28,5 +28,5 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
             Die();
     }
 
-    private void Die() => _essence.DestroyItem();
+    public virtual void Die() => _essence.DestroyItem();
 }

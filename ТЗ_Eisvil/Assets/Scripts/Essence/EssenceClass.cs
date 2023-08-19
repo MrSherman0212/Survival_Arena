@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-[RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(CollisionDamage))]
 public class EssenceClass : MonoBehaviour
 {

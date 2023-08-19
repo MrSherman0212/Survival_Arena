@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(HealthSystem))]
 public class PlayerController : EssenceClass
 {
     private MeleeWeapon _meleeWeapon;

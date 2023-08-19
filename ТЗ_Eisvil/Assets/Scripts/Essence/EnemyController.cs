@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyHealthSystem))]
 public class EnemyController : EssenceClass
 {
     private Transform _playerTransform;
