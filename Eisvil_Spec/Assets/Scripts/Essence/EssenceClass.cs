@@ -31,8 +31,8 @@ public class EssenceClass : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _healthSystem = GetComponent<HealthSystem>();
         _healthSystem.Init();
-
         _transform = GetComponent<Transform>();
+
         _spawner = spawner;
         _maxHealthPoints = health;
         _movementSpeed = speed;

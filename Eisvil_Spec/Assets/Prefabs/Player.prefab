@@ -473,9 +473,9 @@ GameObject:
   - component: {fileID: 5981878951244207714}
   - component: {fileID: 5981878951244207717}
   - component: {fileID: 5981878951244207716}
-  - component: {fileID: 5981878951244207719}
-  - component: {fileID: 5869980853816315792}
   - component: {fileID: 8368633262265307273}
+  - component: {fileID: 4456253523723929667}
+  - component: {fileID: 6020442094663669497}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -550,38 +550,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5981878951244207719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5981878951244207715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af2efd4f0d80145da9e576f3f748332e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealthPoints: 5
-  _projectileResistance: 5
-  _movementSpeed: 5
-  _collisionDamageAmount: 1
---- !u!114 &5869980853816315792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5981878951244207715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ab92ecfb7dc4d759349dd718ba6843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 5
-  _health: 0
-  _projectileResistance: 1
-  _healthBar: {fileID: 6665876507719957808}
 --- !u!114 &8368633262265307273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +565,38 @@ MonoBehaviour:
   _contactExeptions:
   - Player
   _damageAmount: 1
+--- !u!114 &4456253523723929667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981878951244207715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079905973016549c8b14c0f490660e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 5
+  _health: 0
+  _projectileResistance: 1
+  _healthBar: {fileID: 6665876507719957808}
+--- !u!114 &6020442094663669497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981878951244207715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2efd4f0d80145da9e576f3f748332e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealthPoints: 5
+  _projectileResistance: 5
+  _movementSpeed: 2
+  _collisionDamageAmount: 1
 --- !u!1001 &7650635547817904125
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
     [SerializeField] private Slider _healthBar;
     private EssenceClass _essence;
 
+    public delegate void DamageEvent();
+    public static DamageEvent OnDamageEvent;
+
     public float MaxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
     public float ProjectileResistance { get { return _projectileResistance; } }
 
@@ -24,6 +27,7 @@ public class HealthSystem : MonoBehaviour, IDamagable, IInitializable, IProjecti
     {
         _health -= damage;
         _healthBar.value = _health;
+        OnDamageEvent.Invoke();
         if (_health <= 0)
             Die();
     }

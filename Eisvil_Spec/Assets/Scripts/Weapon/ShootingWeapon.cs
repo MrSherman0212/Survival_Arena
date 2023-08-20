@@ -22,6 +22,9 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
     [SerializeField] private int _spawnAmount = 10;
     private ObjectPool<Projectile> _pool;
 
+    public delegate void ShootEvent();
+    public static ShootEvent OnShootEvent;
+
     public Transform ProjPointTransform { get { return _gunTransform; } }
 
     public void Init()
@@ -71,6 +74,7 @@ public class ShootingWeapon : MonoBehaviour, IInitializable
         Projectile projectile = _usePool ? _pool.Get() : Instantiate(_bulletPrefab);
         InitializeProjectile(projectile);
         projectile.SetPool(_pool);
+        OnShootEvent.Invoke();
     }
 
     private Projectile CreateProjectile()

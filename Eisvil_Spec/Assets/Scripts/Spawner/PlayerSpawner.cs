@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Pool;
 using Cinemachine;
 
 public class PlayerSpawner : EssenceSpawner
@@ -31,7 +30,7 @@ public class PlayerSpawner : EssenceSpawner
         InitializeEssence(essence);
         essence.SetPool(_pool);
         essence.GetComponent<PlayerController>().EssenceInput = _essenceInput;
-        KillEssence(essence);
+        _pool.Release(essence);
         return essence;
     }
 
