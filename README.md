@@ -5,3 +5,5 @@ Successfully, I got this job.
 Link to the gameplay: <https://youtube.com/shorts/kOrUgTr6zuE>
 
 Overview gif:
+
+![Gameplay gif...](/Eisvil_Spec/animation-ezgif.com-video-to-gif-converter.gif)
